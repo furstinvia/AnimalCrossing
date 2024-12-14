@@ -11,17 +11,16 @@ directionalLight.position.set(1, 1, 1).normalize();
 scene.add(directionalLight);
 
 const loader = new THREE.GLTFLoader();
-const models = []; // Array to hold model references
-let currentIndex = 0; // Current model index
+const models = [];
+let currentIndex = 0;
 
-// Load Cow model
 loader.load('model/Cow.glb', function(gltf) {
     const cow = gltf.scene;
     cow.scale.set(1, 1, 1);
     cow.position.set(0, -1.5, 0);
-    models.push(cow); // Add to models array
-    if (models.length === 1) {
-        scene.add(cow); // Add to scene if it's the first model
+    models[0] = cow;
+    if (currentIndex === 0) {
+        scene.add(cow);
     }
 });
 
@@ -29,34 +28,31 @@ loader.load('model/rabbit.glb', function(gltf) {
     const rabbit = gltf.scene;
     rabbit.scale.set(0.3, 0.3, 0.3);
     rabbit.position.set(0, -1.5, 0);
-    models.push(rabbit); // Add to models array
+    models[1] = rabbit;
 });
 
 loader.load('model/pig.glb', function(gltf) {
     const pig = gltf.scene;
     pig.scale.set(0.1, 0.1, 0.1);
     pig.position.set(0, -1, 0);
-    models.push(pig); // Add to models array
+    models[2] = pig;
 });
 
 loader.load('model/chicken.glb', function(gltf) {
     const chicken = gltf.scene;
     chicken.scale.set(0.1, 0.1, 0.1);
     chicken.position.set(0, -1, 0);
-    models.push(chicken); // Add to models array
+    models[3] = chicken;
 });
 
 loader.load('model/lion.glb', function(gltf) {
     const lion = gltf.scene;
-    
     lion.rotation.y = Math.PI; 
     
     lion.scale.set(1, 1, 1);
     lion.position.set(0, -1.5, 0);
-    
-    models.push(lion); // Menambahkan model ke dalam array models
+    models[4] = lion;
 });
-
 
 camera.position.set(0, 0, 5);
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -67,31 +63,34 @@ controls.maxPolarAngle = Math.PI;
 controls.minPolarAngle = 0;
 
 function updateModelDisplay() {
-    // Clear previous model from the scene
     for (let model of models) {
-        scene.remove(model); // Remove each model from the scene
+        scene.remove(model);
     }
-
-    // Add the current model to the scene
     const modelToDisplay = models[currentIndex];
     if (modelToDisplay) {
-        scene.add(modelToDisplay); // Add the current model to the scene
+        scene.add(modelToDisplay);
     }
+    modelSelect.value = currentIndex;
 }
 
 // Button event listeners
 document.getElementById('nextBtn').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % models.length; // Increment index
+    currentIndex = (currentIndex + 1) % models.length;
     updateModelDisplay();
 });
 
 document.getElementById('prevBtn').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + models.length) % models.length; // Wrap to last model
+    currentIndex = (currentIndex - 1 + models.length) % models.length;
     updateModelDisplay();
 });
 
 const selectButton = document.getElementById('selectBtn');
 const modelSelect = document.getElementById('modelSelect');
+
+modelSelect.addEventListener('change', function() {
+    currentIndex = parseInt(this.value, 10);
+    updateModelDisplay();
+});
 
 selectButton.addEventListener('click', function() {
     const selectedModelName = modelSelect.options[modelSelect.selectedIndex].text;
