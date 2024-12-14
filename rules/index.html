@@ -42,24 +42,31 @@
         }
         .button-container {
             position: absolute;
-            bottom: 20px; /* Position from the bottom */
+            bottom: 120px; /* Position from the bottom */
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust for centering */
             display: flex; /* Use flexbox for button alignment */
             gap: 10px; /* Space between buttons */
         }
         .button {
-            background-color: #FF5722; /* Button color */
-            color: white; /* Text color */
+            position: absolute;
+            left: 50%;
+            padding: 15px 30px;
+            font-size: 26px; 
+            background: linear-gradient(to right, #ff4b8b, #ff69b4); 
+            color: white; 
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Smooth transition on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+            transform: translateX(-50%); 
+            font-weight: bold;
         }
         .button:hover {
-            background-color: #FF8A65; /* Lighter color on hover */
+            background: linear-gradient(to right, #ff69b4, #ff4b8b); 
+            transform: translateX(-50%) scale(1.1); 
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
