@@ -9,19 +9,10 @@
     <script src="https://kit.fontawesome.com/622afd0c30.js"></script>
   </head>
   <body>
-    <div id="score">Score: <span id="counter">0</span></div>
-
-    <script>
-      let count = 0;
-
-      function updateScore() {
-        count++;
-        document.getElementById("counter").innerText = count;
-      }
-
-      // Panggil updateScore() setiap kali ingin menambah skor
-      updateScore(); // Contoh pemanggilan
-    </script>
+    <div id="score-time-wrapper">
+      <div id="score">Score: <span id="counter">0</span></div>
+      <div id="score">Timer: <span id="timerDisplay">00:00</span></div>
+    </div>
 
     <div id="controls">
       <div>
