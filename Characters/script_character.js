@@ -99,20 +99,7 @@ selectButton.addEventListener('click', function() {
 });
 
 document.getElementById('playBtn').addEventListener('click', () => {
-    const selectedCharacter = localStorage.getItem('selectedCharacter');
-    if (selectedCharacter === 'Cow') {
-        window.location.href = '../Cow/index.html';
-    } else if (selectedCharacter === 'Rabbit') {
-        window.location.href = '../rabbit/index.html';
-    } else if (selectedCharacter === 'Pig') {
-        window.location.href = '../pig/index.html';
-    } else if (selectedCharacter === 'Chicken') {
-        window.location.href = '../Game/index.html';
-    }  else if (selectedCharacter === 'Lion') {
-        window.location.href = '../Lion/index.html';
-    } else {
-        alert("Please select a character.");
-    }
+    window.location.href = '../Game/index.html';
 });
 
 function animate() {

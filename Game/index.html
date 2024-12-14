@@ -84,9 +84,25 @@
         }
         isPlaying = !isPlaying;
       });
+
+      const selectedCharacter = localStorage.getItem("selectedCharacter");
+      if (selectedCharacter) {
+        loadCharacterScript(selectedCharacter);
+      }
+
+      function loadCharacterScript(character) {
+        const existingScript = document.getElementById("characterScript");
+        if (existingScript) {
+          existingScript.remove();
+        }
+
+        const scriptElement = document.createElement("script");
+        scriptElement.src = `./script/${character}.js`;
+        scriptElement.id = "characterScript";
+        document.body.appendChild(scriptElement);
+      }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
-    <script src="./script.js"></script>
   </body>
 </html>
